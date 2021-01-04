@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dotties</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css"
+            />
+        <link rel="stylesheet" href="./css/style.css">
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&amp;family=Roboto:wght@400;500;700;900&amp;display=swap">
+    </head>
+    <body>
+        <div class="container center">
+            <nav class="nav white">
+                <!-- <a href="#" class="btn">item 1</a>
+                <a href="#" class="btn">item 2</a>
+                <a href="#" class="btn">item 3</a> -->
+            </nav>
+        </div>
+        <div>
+            <p>Укажите количество точек</p>
+            <div>
+                <button type="button" id="run">погнали</button>
+                <button type="button" id="clear">очистить</button>
+                <button type="button" id="count">рассчитать</button>
+                <p id="message"></p>
+            </div>
+        </div>
+        <div class="canv-container">
+            <canvas id="image_1" width="800px" height="400px"
+                style="border:solid
+                1px black" class="canv"></canvas>
+            <!-- <br>
+            <input type="button" value="Увеличить" onclick="increase()">
+            <input type="button" value="Уменьшить" onclick="decrease()"> -->
+        </div>
+        <script src="./js/task-1.js" type="module"></script>
+        <!-- <script src="./js/korteg.js" type="module"></script> -->
+    </body>
+</html>

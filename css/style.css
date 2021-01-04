@@ -1,0 +1,16 @@
+body {
+  padding: 1rem;
+}
+.btn {
+  min-width: 100px;
+  height: 40px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.canv {
+    margin-top: 50px;
+}
+/* .canv-container {
+left: 50%;
+right: 50%;
+} */
