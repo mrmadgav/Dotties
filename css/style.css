@@ -8,9 +8,13 @@ body {
   text-transform: uppercase;
 }
 .canv {
-    margin-top: 50px;
+  margin: 0 auto;
 }
-/* .canv-container {
-left: 50%;
-right: 50%;
-} */
+
+.wrap {
+  display: flex;
+  justify-content: space-around;
+}
+.operation-menu {
+  
+}
