@@ -13,11 +13,15 @@ const canvas = document.getElementById("image_1");
 const ctx = canvas.getContext("2d");
 
 // переменные для основной функции
-
+let arrTemp = [];
 let massObj = { x: [], y: [] };
 let abLength = [];
 let i = 0;
 let arr3 = [];
+let arrPath = [];
+let arrPathAll = [];
+let minPath;
+let text = 1;
 // фунция создания рандомной координаты Х
 const RandomX = function (min, max) {
   let x = Math.round(Math.random() * (max - min) + min);
@@ -37,8 +41,15 @@ const RandomY = function RandomY(min, max) {
 // Вешаем слушатель генерации точек
 document.getElementById("run").addEventListener("click", function () {
   // создаем точки
-  ctx.rect(RandomX(0, canvas.width), RandomY(0, canvas.height), 5, 5);
+  let xCorr = RandomX(0, canvas.width);
+  let yCorr = RandomY(0, canvas.height);
+  ctx.rect(xCorr, yCorr, 5, 5);
+  arrTemp.push({ x: xCorr, y: yCorr });
+  console.log(arrTemp);
   ctx.fill();
+  // делаем подпись счетчика с координатами к точке
+  ctx.fillText(`${text}, x:${xCorr}, y:${yCorr}`, xCorr + 5, yCorr + 5);
+  text++;
 });
 
 // Вешаем слушатель поиска кратчайшего расстояния на плоскости
@@ -75,4 +86,34 @@ document.getElementById("count").addEventListener("click", function () {
 // Слушатель очистки канваса
 document.getElementById("clear").addEventListener("click", function () {
   alert("Функция в разработке!");
+});
+
+// слушатель для кнопки рассчета маршрута
+
+document.getElementById("path").addEventListener("click", function () {
+  let resultPath = (arr) => {
+    for (let k = 0; k < arrTemp.length; k++) {
+      arr.map(function (elem, j) {
+        if (j != 0)
+          arrPath.push(
+            parseInt(
+              Math.sqrt(
+                Math.pow(arr[0].x - arr[j].x, 2) +
+                  Math.pow(arr[0].y - arr[j].y, 2)
+              )
+            )
+          );        
+        console.log("Нулевой элемент массива = ", arr[0]);
+        minPath = Math.min(...arrPath);
+        console.log("Ближайшая к нему точка", arr[arrPath.indexOf(minPath)]);
+        arr.shift();
+        // elem[nearDotIndex].fillStyle = "green";
+      });
+      arrPathAll.push(minPath);
+    }
+    console.log(`Расстояния от последней точки: ${arrPath}`);
+  };
+
+  resultPath(arrTemp);
+  console.log("Совокупный маршрут", arrPathAll);
 });

@@ -11,19 +11,19 @@ let count = (arr) => {
 console.log(count(arrX));
 console.log(count(arrY));
 
-// Array.prototype.combinations = function (n) {
-//   return this.reduce(
-//     (p, c, i, a) =>
-//       p.concat(
-//         n > 1
-//           ? a
-//               .slice(i + 1)
-//               .combinations(n - 1)
-//               .map((e) => [].concat(e, c))
-//           : [[c]]
-//       ),
-//     []
-//   );
-// };
+Array.prototype.combinations = function (n) {
+  return this.reduce(
+    (p, c, i, a) =>
+      p.concat(
+        n > 1
+          ? a
+              .slice(i + 1)
+              .combinations(n - 1)
+              .map((e) => [].concat(e, c))
+          : [[c]]
+      ),
+    []
+  );
+};
 
-// console.log([1, 2, 3].combinations(2));
+console.log([1, 2, 3].combinations(2));
