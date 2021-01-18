@@ -85,35 +85,66 @@ document.getElementById("count").addEventListener("click", function () {
 
 // Слушатель очистки канваса
 document.getElementById("clear").addEventListener("click", function () {
-  alert("Функция в разработке!");
+  arrTemp = [];
+  arr3 = [];
+  arrPath = [];
+  arrPathAll = [];
+  massObj = { x: [], y: [] };
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 });
 
 // слушатель для кнопки рассчета маршрута
 
 document.getElementById("path").addEventListener("click", function () {
-  let resultPath = (arr) => {
-    for (let k = 0; k < arrTemp.length; k++) {
-      arr.map(function (elem, j) {
-        if (j != 0)
-          arrPath.push(
-            parseInt(
-              Math.sqrt(
-                Math.pow(arr[0].x - arr[j].x, 2) +
-                  Math.pow(arr[0].y - arr[j].y, 2)
-              )
-            )
-          );        
-        console.log("Нулевой элемент массива = ", arr[0]);
-        minPath = Math.min(...arrPath);
-        console.log("Ближайшая к нему точка", arr[arrPath.indexOf(minPath)]);
-        arr.shift();
-        // elem[nearDotIndex].fillStyle = "green";
+  let result = 0;
+  let count = 0;
+  let arrPath = [];
+  let arrPathMin = [];
+
+  let res = (arr) => {
+    arr.map((user) => {
+      arr.map((user, j) => {
+        result = parseInt(
+          Math.sqrt(
+            Math.pow(arr[0].x - arr[j].x, 2) + Math.pow(arr[0].y - arr[j].y, 2)
+          )
+        );
+        if (j != 0) arrPath.push(result);
+        count++;
       });
-      arrPathAll.push(minPath);
-    }
-    console.log(`Расстояния от последней точки: ${arrPath}`);
+
+      arrPathMin.push(Math.min(...arrPath));
+      arrPath = [];
+      arr.shift();
+    });
+    return console.log("минимальная цепь расстояний: ", arrPathMin);
   };
 
-  resultPath(arrTemp);
-  console.log("Совокупный маршрут", arrPathAll);
+  res(arrTemp);
 });
+
+// let resultPath = (arr) => {
+//   for (let k = 0; k < arrTemp.length; k++) {
+//     arr.map(function (elem, j) {
+//       if (j != 0)
+//         arrPath.push(
+//           parseInt(
+//             Math.sqrt(
+//               Math.pow(arr[0].x - arr[j].x, 2) +
+//                 Math.pow(arr[0].y - arr[j].y, 2)
+//             )
+//           )
+//         );
+//       console.log("Нулевой элемент массива = ", arr[0]);
+//       minPath = Math.min(...arrPath);
+//       console.log("Ближайшая к нему точка", arr[arrPath.indexOf(minPath)]);
+//       arr.shift();
+//       // elem[nearDotIndex].fillStyle = "green";
+//     });
+//     arrPathAll.push(minPath);
+//   }
+//   console.log(`Расстояния от последней точки: ${arrPath}`);
+// };
+
+// resultPath(arrTemp);
+// console.log("Совокупный маршрут", arrPathAll);
